@@ -1,3 +1,8 @@
+
+#include <stdio.h>
+
+void message(char str[],int k);	
+
 int main()
 {
 	char str[]= "ABCDEF ABCDEF1234", ex;

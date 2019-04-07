@@ -11,20 +11,15 @@ void message(char str[],int k)
     {
         int i = 0;
         
-        for(i=0;str[i] != '\0';i++)
+        for(i=0;str[i] != '\0';i++)//For loop including an int i that will indicate the location. '\0' is white space indicator
         {
-            if (str[i] >= 65 && str[i]<= 90)
+            if (str[i] >= 65 && str[i]<= 90) //if statment concluding if it is bwtewwn letter 'A' and letter 'Z' all in capitals
             {
-                char ex = str[i]- 65 + 26;
-                ex = (ex+k) % 26;
-                str[i] = ex + 65;
-           }
-           else if (str[i] >= 48 && str[i] <= 57)
-           {
-                char ex = str[i] - 48 +10;
-                ex = (ex +k) %10;
-                str[i]= ex + 48;
+                char ex = str[i]- 65 + 26; // So for example A is configured to number 26 as it is letter Ascii code 65
+                ex = (ex+k) % 26;// ex = 26 then add the key (FOR EXAMPLE -1) this will create the number 25 then modulas(remiamder) of 26 = 25
+                str[i] = ex + 65;// then 25 +65 = 90 which is ascii number for Z
             }
+          
         
             
         }

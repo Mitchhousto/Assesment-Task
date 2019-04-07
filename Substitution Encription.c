@@ -1,22 +1,22 @@
 #include <stdio.h>
 
 char *encription(char []);
-//void *decryption(char []);
-char alpha[26]="abcdefghijklmnopqrstuvwxyz";  
-char key[26]="qwertyuiopasdfghjklzxcvbnm";
+void *decryption(char []);
+char alpha[26]="ABCDEFGHIJKLMNOPQRSTUVWXYZ";  
+char key[26]="QWERTYUIOPASDFGHJKLZXCVBNM";
 
 
 void main()
     {
-    char message[26]="abcdefghijklmnopqrstuvwxyz";
-     encription(message);
-    
+    char message[]="PLEASE GET MILK AT THE SHOPS";
+    encription(message);
+    decryption(message);
     } 
     
 char *encription(char cipher_text[])
     {
     int i,j;
-        for(i=0; i<26; i++)
+        for(i=0; i<strlen(cipher_text); i++)
         {
             for(j=0; j<26; j++)
             {
@@ -33,23 +33,25 @@ char *encription(char cipher_text[])
     
     }
     
-/*void *decryption(char []);
+void *decryption(char cipher_text [])
     {
-        int i,val,j;
-        char cipher[255];
-        strcpy(cipher,cipher_text);
-            printf("\n Decription Process\n");
-                for(i=0; i<strlen(cipher);i++)
+        int i,j;
+        //char cipher[255];
+        //cipher=cipher_text;
+            
+                for(i=0; i<255; i++)
                 {
                     for(j=0; j<26; j++)
                     {
-                        if(cipher[i]==key[j])
+                        if(cipher_text[i]==key[j])
                         {
-                            cipher[i]=alpha[j];
+                            cipher_text[i]=alpha[j];
                             break;
                             
                         }    
                     }
                 }
-                printf("\n Decripted text %s",cipher);
-    }*/
+                printf("\n Decripted text %s",cipher_text);
+    }
+        
+    

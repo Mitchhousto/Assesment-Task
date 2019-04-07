@@ -1,14 +1,8 @@
-#include <stdio.h>
-
-void message(char str[],int k)
- 
 int main()
 {
-	char str[]= "ABCDEF", ex;
-	k=-1;
-	
-	
-
+	char str[]= "ABCDEF ABCDEF1234", ex;
+	int k=-1;
+    message(str,k);
 	return 0;
 }	
 	
@@ -19,53 +13,22 @@ void message(char str[],int k)
         
         for(i=0;str[i] != '\0';i++)
         {
-            if (str[i] >= 'A' && str[i]<= 'Z'>);
+            if (str[i] >= 65 && str[i]<= 90)
             {
-                char ex = str[i]-'A' + 26;
+                char ex = str[i]- 65 + 26;
                 ex = (ex+k) % 26;
-                str[i] = ex + 'A';
+                str[i] = ex + 65;
            }
-           else if (str[i] >= '0' && str[i] <= '9')
+           else if (str[i] >= 48 && str[i] <= 57)
            {
-                char ex = str[i] - '0'+10;
+                char ex = str[i] - 48 +10;
                 ex = (ex +k) %10;
-                str[i]= ex + '0';
+                str[i]= ex + 48;
             }
+        
+            
         }
+    printf("%s\n", str);
     
-    
-	printf("%s\n", str[i]);
+	
     }
-	/*for(i = 0; str[i] != '\0' ; ++i){
-		ex = str[i];
-		
-		if(ex>65  )
-	    
-	
-		str[i]=ex+k;
-		
-		/*if(ex >= 'a' && ex <= 'z'){
-			ex = ex + k;
-			
-			if(ex > 'z'){
-				ex = ex - 'z' + 'a' ;
-			}
-			
-			str[i] = ex;
-		}
-		else if(ch >= 'A' && ch <= 'Z'){
-			ch = ch + key;
-			
-			if(ch > 'Z'){
-				ch = ch - 'Z' + 'A' - 1;
-			}
-			
-			str[i] = ch;
-		
-	}
-	
-	printf("Encrypted messages: %s", str);
-	
-	return 0;*/
-	
-}  

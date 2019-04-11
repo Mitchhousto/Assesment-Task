@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 
 void message(char str[],int k);	
@@ -6,7 +5,7 @@ void message(char str[],int k);
 int main()
 {
 	char str[]= "ABCDEF ABCDEF1234", ex;
-	int k=-1;
+	int k=1;
     message(str,k);
 	return 0;
 }	
@@ -29,6 +28,6 @@ void message(char str[],int k)
             
         }
     printf("%s\n", str);
-	
-    }*/
     
+	
+    }

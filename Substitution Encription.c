@@ -2,8 +2,8 @@
 
 char *encription(char []);
 char *decryption(char []);
-char alpha[26]="ABCDEFGHIJKLMNOPQRSTUVWXYZ";  
-char key[26]="QWERTYUIOPASDFGHJKLZXCVBNM";
+char alpha[52]="ABCDEFGHIJKLMNOPQRSTUVWXYZ";  
+char key[52]="QWERTYUIOPASDFGHJKLZXCVBNM
 
 
 void main()
@@ -16,9 +16,9 @@ void main()
 char *encription(char cipher_text[])
     {
     int i,j;
-        for(i=0; i</*strlen(cipher_text)*/26; i++)
+        for(i=0; i<strlen(cipher_text); i++)
         {
-            for(j=0; j<26; j++)
+            for(j=0; j<52; j++)
             {
                 if(alpha[j]==cipher_text[i])
                 {
@@ -36,12 +36,12 @@ char *encription(char cipher_text[])
 char *decryption(char cipher_text [])
     {
         int i,j;
-        char cipher[255];
+        char cipher[200];
         strcpy(cipher,cipher_text);
             
-                for(i=0; i<255; i++)
+                for(i=0; i<strlen(cipher_text); i++)
                 {
-                    for(j=0; j<26; j++)
+                    for(j=0; j<52; j++)
                     {
                         if(cipher[i]==key[j])
                         {
@@ -54,3 +54,4 @@ char *decryption(char cipher_text [])
                 printf("\n Decripted text %s",cipher);
     }
         
+    

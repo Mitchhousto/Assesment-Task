@@ -1,5 +1,4 @@
 
-
 #include <stdio.h>
 #include <string.h>
 char *Encription(char [],int k);	
@@ -12,20 +11,24 @@ char key[52]="QWERTYUIOPASDFGHJKLZXCVBNM";
 int main()
 {
 	char *c_text,msg[200];
-	int choice,k=-1;
+	int choice,k=0;
     
     printf("Enter message:");
     scanf("%s",msg);
     
     do{
-    printf("\nPress 1 for Rotation encription \nPress 2 for Rotation decription\nPress3 for substitution encription\nPress 4 for substitution decription\nPress 0 for exit\n");
+    printf("\nPress 1 for Rotation encription \nPress 2 for Rotation decription\nPress 3 for substitution encription\nPress 4 for substitution decription\nPress 0 for exit\n");
     scanf("%d",&choice);
     switch(choice) {
         case 1:
+        printf("Enter a key:");
+        scanf("%d",&k);
         c_text=Encription(msg,k);
         break;
         case 2:
         c_text=Decription(msg,k);
+        printf("Enter a key:");
+        scanf("%d",&k);
         break;
         case 3:
         c_text=encription(msg);
@@ -62,7 +65,7 @@ char *Encription(char str[],int k)
         
             
         }
-    printf("%s\n", str);
+    printf("\nEcripted Text: %s\n", str);
 return str;
     }
     
@@ -83,7 +86,7 @@ char *Decription(char str[],int k)
         
             
         }
-    printf("%s\n", str);
+ printf("\nEcripted Text%s\n", str);
 
 return str;
 }
@@ -102,7 +105,7 @@ return str;
                 }
             }
         }
-    printf("Your encripted message: %s",cipher_text);
+    printf("\nYour encripted message: %s",cipher_text);
     
     return cipher_text;
     
@@ -126,9 +129,5 @@ char *decryption(char cipher_text [])
                         }    
                     }
                 }
-                printf("\nEcripted Text %s",cipher);
+                printf("\nDecripted Text %s",cipher);
     }
-                printf("\n Decripted text %s",cipher);
-    }
-        
-}

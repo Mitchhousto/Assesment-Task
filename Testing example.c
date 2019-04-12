@@ -1,17 +1,17 @@
-#include <stdio.h>
+
 
 #include <stdio.h>
 #include <string.h>
-char Encription(char [],int k);	
-char Decription(char [],int k);
-char encription(char []);
-char decryption(char []);
+char *Encription(char [],int k);	
+char *Decription(char [],int k);
+char *encription(char []);
+char *decryption(char []);
 char alpha[52]="ABCDEFGHIJKLMNOPQRSTUVWXYZ";  
 char key[52]="QWERTYUIOPASDFGHJKLZXCVBNM";
 
 int main()
 {
-	char msg[200];
+	char *c_text,msg[200];
 	int choice,k=-1;
     
     printf("Enter message:");
@@ -22,16 +22,16 @@ int main()
     scanf("%d",&choice);
     switch(choice) {
         case 1:
-        Encription(msg,k);
+        c_text=Encription(msg,k);
         break;
         case 2:
-        Decription(msg,k);
+        c_text=Decription(msg,k);
         break;
         case 3:
-        encription(msg);
+        c_text=encription(msg);
         break;
         case 4:
-        decryption(msg);
+        c_text=decryption(msg);
         break;
         case 0:
         break;
@@ -45,7 +45,7 @@ int main()
     
 
 	
-char Encription(char str[],int k)	
+char *Encription(char str[],int k)	
 
     {
         int i = 0;
@@ -66,7 +66,7 @@ char Encription(char str[],int k)
 return str;
     }
     
-char Decription(char str[],int k)
+char *Decription(char str[],int k)
     
     {
         int i = 0;
@@ -86,8 +86,9 @@ char Decription(char str[],int k)
     printf("%s\n", str);
 
 return str;
+}
 
-	char encription(char cipher_text[])
+	char *encription(char cipher_text[])
     {
     int i,j;
         for(i=0; i<strlen(cipher_text); i++)
@@ -107,7 +108,7 @@ return str;
     
     }
     
-char decryption(char cipher_text [])
+char *decryption(char cipher_text [])
     {
         int i,j;
         char cipher[200];
@@ -125,6 +126,8 @@ char decryption(char cipher_text [])
                         }    
                     }
                 }
+                printf("\nEcripted Text %s",cipher);
+    }
                 printf("\n Decripted text %s",cipher);
     }
         

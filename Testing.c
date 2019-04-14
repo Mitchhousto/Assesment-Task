@@ -11,11 +11,28 @@ char key[]="QWERTYUIOPASDFGHJKLZXCVBNM";
 int main()
     {
         FILE *input;
-	char *c_text,msg[250];
+        FILE *output;
+	
+	char msg[250];
 	int choice,k;
+	input = fopen("input.txt","r");
+	output = fopen("Output","w");
+        
         printf("Enter message: ");
-        scanf("%[^\n]",msg);
-    
+        //while(!feof(input))
+        //while(!feof(input))
+       //{
+        //char *msg;
+        fscanf(input,"%[^\n]",msg);
+        //fscanf(input,"%[^\n]", msg);
+        
+        printf("%s",msg);
+        fprintf(output,"%s\n",msg);
+       
+     
+   //}
+     
+       
     
         do
         {
@@ -27,21 +44,21 @@ int main()
                 case 1:
                     printf("Enter a key:");
                     scanf("%d",&k);
-                    c_text=Encription(msg,k);
+                    Encription(msg,k);
                         break;
                     
                 case 2:
                     printf("Enter a key:");
                     scanf("%d",&k);
-                    c_text=Decription(msg,k);
+                    Decription(msg,k);
                         break;
                     
                 case 3:
-                    c_text=encription(msg);
+                    encription(msg);
                         break;
                     
                 case 4:
-                    c_text=decryption(msg);
+                    decryption(msg);
                         break;
                     
                 case 0:
@@ -145,4 +162,5 @@ void *decryption(char cipher_text [])
                     }
                 }
                 printf("\nDecripted message: %s\n",cipher);
+                return cipher_text;
     }

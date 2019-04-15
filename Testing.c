@@ -18,72 +18,86 @@ void *SubstitutionEncription(char []);
 // This function prototype initialises the encription message with the char string written in input
 void *SubstitutionDecryption(char []);
 // This function prototype intitialises the decription message with the char string written in input
-char alpha[]="ABCDEFGHIJKLMNOPQRSTUVWXYZ";  
+char library[]="ABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
+// Sets the string location for the libary of characters to be converted by the key 
 char key[]="QWERTYUIOPASDFGHJKLZXCVBNM";
+// This is they key to align with the  location of the Libary 
+
 
 int main()
     {
         FILE *input;
-        FILE *output;
+        // This declares the stream for input source
+        //FILE *output;
 	
 	
-	static char msg[250];
+	char msg[250];
+	// Declaring a string of type char which can only be 250 characters in length
 	int choice,k;
+	//"choice" is the integer for declaring the menu option in the do while loop. "K" is the key number for the rotation cipher
 	input = fopen("input.txt","r");
-	output = fopen("Output.txt","w");
-        
+	//output = fopen("Output.txt","w");
+        // A prototype which states the file name"input.txt" and mode (r for read) arguments.        
         printf("Enter message: ");
-      
+        //Prints out the message
         fscanf(input,"%[^\n]",msg);
-        
+        //Scans the message in the input file, the "%[^\n]" is a identifier that ignores white space, Passes the input file to msg.
         printf("%s",msg);
-    
+        // Prints the message written in the 
         
-        //fprintf(output,"%d",e);
+        //fprintf(output,"%s",msg);
 
 
         do
         {
         printf("\nPress 1 for Rotation encription \nPress 2 for Rotation decription\nPress 3 for substitution encription\nPress 4 for substitution decription\nPress 5 for Rotation cipher attack\nPress 6 for substituion cipher attack\nPress 0 for exit\n");
         scanf("%d",&choice);
-    
+        // a Do while loop so the meanu appears every exicution. Multiple choices with integer "choice" inputed in the menu.
             switch(choice)
             {
+            //Switch flow control for the menu intitialed by integer "choice"
                 case 1:
                     printf("Enter a key:");
                     scanf("%d",&k);
                     RotationEncription(msg,k);
                         break;
+                    // Rotaion encription prototype initialiser, promt for a key for the cipher when integer "choice" is inputed a 1
                     
                 case 2:
                     printf("Enter a key:");
                     scanf("%d",&k);
                     RotationDecription(msg,k);
                         break;
+                    // Rotaion decription prototype initialiser, promt for a key for the cipher when integer "choice" is inputed a 2
                     
                 case 3:
                     SubstitutionEncription(msg);
                         break;
-                    
+                    // Substitution decription prototype initialiser, sets string msg
                 case 4:
                     SubstitutionDecryption(msg);
                         break;
+                    // Substitution decription prototype initialiser, sets string msg
                 case 5:
                     printf("Under construction");
                     break;
+                    // code unfinished so prints a "under construction" note
                 case 6:
                     printf("Under construction");
                     break;
+                    // code unfinished so prints a "under construction" note
                 case 0:
                         break;
-                    
+                    //When a '0' is initialised it quits the Do-while loop
                 default:
                     printf("\nplease enter valid choice\n");
                         break;
+                    //If a number between 7-infinity is chosen. Implimets a "please enter a valid choice" and re-prints the loop
             }
             
         }
         while(choice!=0 );
+        //While loop conditons (choice not equal to 0)
     }
 
 
@@ -146,7 +160,7 @@ void *SubstitutionEncription(char cipher_text[])
         {
             for(j=0; j<52; j++)
             {
-                if(alpha[j]==cipher_text[i])
+                if(library[j]==cipher_text[i])
                 {
                     cipher_text[i]=key[j];
                     break;
@@ -171,7 +185,7 @@ void *SubstitutionEncription(char cipher_text[])
                     {
                         if(cipher[i]==key[j])
                         {
-                            cipher[i]=alpha[j];
+                            cipher[i]=library[j];
                             break;
                             
                         }    

@@ -1,10 +1,23 @@
+/* Assesment-Task workspace contains a c file "Testing.c". This can be used to encript and decript a message using two different ceaser cipher 
+methods of "Rotation" and "Substitution". A message can be wirtten into the "input.txt" file in the workspace, then usinng the terminal will 
+prompt a meanu. So in terminal first input "cd Assesment-Task" then (enter key) next line input "gcc Testing" then (enter key), next line
+input "./a.out" then (enter key). A meau will be displayed along with the message printed. Input number of which option suitable. Rotation
+enription and decription will further prompt you with a key selection for the rotation cipher.
+*/
+
 #include <stdio.h>
 #include <string.h>
+//included <string.h> as we use strcpy and strlen 
 
-void *Encription(char [],int k);	
-void *Decription(char [],int k);
-void *encription(char []);
-void *decryption(char []);
+
+void *RotationEncription(char [],int k);
+// This function prototype initialises the encription message with char string and int k is the key
+void *RotationDecription(char [],int k);
+// This function prototype initialises the decription message with char string and int k is the key
+void *SubstitutionEncription(char []);
+// This function prototype initialises the encription message with the char string written in input
+void *SubstitutionDecryption(char []);
+// This function prototype intitialises the decription message with the char string written in input
 char alpha[]="ABCDEFGHIJKLMNOPQRSTUVWXYZ";  
 char key[]="QWERTYUIOPASDFGHJKLZXCVBNM";
 
@@ -13,7 +26,8 @@ int main()
         FILE *input;
         FILE *output;
 	
-	char msg[250];
+	
+	static char msg[250];
 	int choice,k;
 	input = fopen("input.txt","r");
 	output = fopen("Output.txt","w");
@@ -24,19 +38,13 @@ int main()
         
         printf("%s",msg);
     
-        int e=5;
-        fprintf(output,"%d",e);
+        
+        //fprintf(output,"%d",e);
 
 
-
-     
-   
-     
-       
-    
         do
         {
-        printf("\nPress 1 for Rotation encription \nPress 2 for Rotation decription\nPress 3 for substitution encription\nPress 4 for substitution decription\nPress 0 for exit\n");
+        printf("\nPress 1 for Rotation encription \nPress 2 for Rotation decription\nPress 3 for substitution encription\nPress 4 for substitution decription\nPress 5 for Rotation cipher attack\nPress 6 for substituion cipher attack\nPress 0 for exit\n");
         scanf("%d",&choice);
     
             switch(choice)
@@ -44,23 +52,28 @@ int main()
                 case 1:
                     printf("Enter a key:");
                     scanf("%d",&k);
-                    Encription(msg,k);
+                    RotationEncription(msg,k);
                         break;
                     
                 case 2:
                     printf("Enter a key:");
                     scanf("%d",&k);
-                    Decription(msg,k);
+                    RotationDecription(msg,k);
                         break;
                     
                 case 3:
-                    encription(msg);
+                    SubstitutionEncription(msg);
                         break;
                     
                 case 4:
-                    decryption(msg);
+                    SubstitutionDecryption(msg);
                         break;
-                    
+                case 5:
+                    printf("Under construction");
+                    break;
+                case 6:
+                    printf("Under construction");
+                    break;
                 case 0:
                         break;
                     
@@ -72,9 +85,10 @@ int main()
         }
         while(choice!=0 );
     }
-    
+
+
  
-void *Encription(char str[],int k)	
+void *RotationEncription(char str[],int k)	
 
     {
         int i = 0;
@@ -99,7 +113,7 @@ void *Encription(char str[],int k)
             return str;
     }
     
-void *Decription(char str[],int k)
+void *RotationDecription(char str[],int k)
     
     {
         int i = 0;
@@ -122,7 +136,7 @@ void *Decription(char str[],int k)
             return str;
     }
 
-void *encription(char cipher_text[])
+void *SubstitutionEncription(char cipher_text[])
 
     {
         int i,j;
@@ -145,7 +159,7 @@ void *encription(char cipher_text[])
     
     }
     
-void *decryption(char cipher_text [])
+ void *SubstitutionDecryption(char cipher_text [])
     {
         int i,j;
         char cipher[strlen(cipher_text)];

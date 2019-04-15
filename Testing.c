@@ -16,21 +16,21 @@ int main()
 	char msg[250];
 	int choice,k;
 	input = fopen("input.txt","r");
-	output = fopen("Output","w");
+	output = fopen("Output.txt","w");
         
         printf("Enter message: ");
-        //while(!feof(input))
-        //while(!feof(input))
-       //{
-        //char *msg;
+      
         fscanf(input,"%[^\n]",msg);
-        //fscanf(input,"%[^\n]", msg);
         
         printf("%s",msg);
-        fprintf(output,"%s\n",msg);
-       
+    
+        int e=5;
+        fprintf(output,"%d",e);
+
+
+
      
-   //}
+   
      
        
     
@@ -93,7 +93,9 @@ void *Encription(char str[],int k)
                 // then 25 +65 = 90 which is ascii number for Z
             }
         }
+        
         printf("\nEncripted message: %s\n", str);
+        
             return str;
     }
     

@@ -10,13 +10,13 @@ enription and decription will further prompt you with a key selection for the ro
 //included <string.h> as we use strcpy and strlen 
 
 
-void *RotationEncription(char [],int k);
+char *RotationEncription(char [],int k);
 // This function prototype initialises the encription message with char string and int k is the key
-void *RotationDecription(char [],int k);
+char *RotationDecription(char [],int k);
 // This function prototype initialises the decription message with char string and int k is the key
-void *SubstitutionEncription(char []);
+char *SubstitutionEncription(char []);
 // This function prototype initialises the encription message with the char string written in input
-void *SubstitutionDecryption(char []);
+char *SubstitutionDecryption(char []);
 // This function prototype intitialises the decription message with the char string written in input
 char library[]="ABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
 // Sets the string location for the libary of characters to be converted by the key 
@@ -102,7 +102,7 @@ int main()
 
 
  
-void *RotationEncription(char str[],int k)	
+char *RotationEncription(char str[],int k)	
 
     {
         int i = 0;
@@ -127,7 +127,7 @@ void *RotationEncription(char str[],int k)
             return str;
     }
     
-void *RotationDecription(char str[],int k)
+char *RotationDecription(char str[],int k)
     
     {
         int i = 0;
@@ -150,36 +150,39 @@ void *RotationDecription(char str[],int k)
             return str;
     }
 
-void *SubstitutionEncription(char cipher_text[])
+char *SubstitutionEncription(char msg[])
 
     {
         int i,j;
         
-        for(i=0; i<strlen(cipher_text); i++)
-        //
+        for(i=0; i<strlen(msg); i++)
+        //To loop each character of the msg string, strlen quits when the strnig length og msg is reached
         {
-            for(j=0; j<52; j++)
+            for(j=0; j<strlen(library); j++)
+            //To loop each character of the libary at equal time to the msg string
             {
-                if(library[j]==cipher_text[i])
+                if(library[j]==msg[i])
+                //if statement to find characters in msg   libary e.g A in message to A in libary          
                 {
-                    cipher_text[i]=key[j];
+                    msg[i]=key[j];
+                    //This intiiates the same location in the msg to the key
                     break;
                 }
             }
         }
-    printf("\nEncripted message: %s\n",cipher_text);
+    printf("\nEncripted message: %s\n",msg);
     
-        return cipher_text;
+        return msg;
     
     }
     
- void *SubstitutionDecryption(char cipher_text [])
+ char *SubstitutionDecryption(char text[])
     {
         int i,j;
-        char cipher[strlen(cipher_text)];
-        strcpy(cipher,cipher_text);
+        char cipher[strlen(text)];
+        strcpy(cipher,text);
             
-                for(i=0; i<strlen(cipher_text); i++)
+                for(i=0; i<strlen(text); i++)
                 {
                     for(j=0; j<52; j++)
                     {
@@ -192,5 +195,5 @@ void *SubstitutionEncription(char cipher_text[])
                     }
                 }
                 printf("\nDecripted message: %s\n",cipher);
-                return cipher_text;
+                return text;
     }

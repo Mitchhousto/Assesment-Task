@@ -30,7 +30,7 @@ int main()
     {
         FILE *input;
         // This declares the stream for input source
-        //FILE *output;
+        FILE *output;
 	char copy[100];
 	int b;
 	
@@ -39,7 +39,7 @@ int main()
 	int choice,k;
 	//"choice" is the integer for declaring the menu option in the do while loop. "K" is the key number for the rotation cipher
 	input = fopen("input.txt","r");
-	//output = fopen("Output.txt","w");
+	output = fopen("Output.txt","w");
         // A prototype which states the file name"input.txt" and mode (r for read) arguments.        
         printf("Enter message: ");
         //Prints out the message
@@ -47,8 +47,8 @@ int main()
         //Scans the message in the input file, the "%[^\n]" is a identifier that ignores white space, Passes the input file to msg.
         printf("%s",msg);
         // Prints the message written in the 
-        
-        //fprintf(output,"%s",msg);
+         
+       
 
 
         do
@@ -63,6 +63,8 @@ int main()
                     printf("Enter a key:");
                     scanf("%d",&k);
                     RotationEncription(msg,k);
+                    printf("\nEncripted message: %s\n", msg);
+                    fprintf(output,"%s\n",msg);
                         break;
                     // Rotaion encription prototype initialiser, promt for a key for the cipher when integer "choice" is inputed a 1
                     
@@ -70,15 +72,22 @@ int main()
                     printf("Enter a key:");
                     scanf("%d",&k);
                     RotationDecription(msg,k);
+                    printf("\nDecripted message: %s\n", msg);
+                    fprintf(output,"%s\n",msg);
                         break;
                     // Rotaion decription prototype initialiser, promt for a key for the cipher when integer "choice" is inputed a 2
                     
                 case 3:
                     SubstitutionEncription(msg);
+                    printf("\nEncripted message: %s\n",msg);
+                    fprintf(output,"%s\n",msg);
+                    
                         break;
                     // Substitution decription prototype initialiser, sets string msg
                 case 4:
                     SubstitutionDecryption(msg);
+                    printf("\nDecripted message: %s\n",msg);
+                    fprintf(output,"%s\n",msg);
                         break;
                     // Substitution decription prototype initialiser, sets string msg
                 case 5:
@@ -88,7 +97,9 @@ int main()
                     for(b=1;b<=26;b++){
                     RDBF(msg,b);
                     printf("Bute Force key : %d ---> %s\n",b,msg);
+                    fprintf(output,"%s\n",msg);
                     strcpy(msg,copy);
+                    
                 }
 
                     break;
@@ -134,8 +145,6 @@ char *RotationEncription(char str[],int k)
             }
         }
         
-        printf("\nEncripted message: %s\n", str);
-        
             return str;
     }
     
@@ -158,7 +167,7 @@ char *RotationDecription(char str[],int k)
                 // then 25 +65 = 90 which is ascii number for Z
             }
         }
-        printf("\nDecripted message: %s\n", str);
+        
             return str;
     }
 
@@ -180,34 +189,36 @@ char *SubstitutionEncription(char msg[])
                     //This intiiates the same location in the msg to the key
                     break;
                 }
-            }
+            } 
         }
-    printf("\nEncripted message: %s\n",msg);
+    
     
         return msg;
     
     }
     
- char *SubstitutionDecryption(char text[])
+char *SubstitutionDecryption(char msg[])
     {
         int i,j;
-        char cipher[strlen(text)];
-        strcpy(cipher,text);
+        char cipher[strlen(msg)];
+        strcpy(cipher,msg);
             
-                for(i=0; i<strlen(text); i++)
+                for(i=0; i<strlen(msg); i++)
                 {
-                    for(j=0; j<52; j++)
+                    for(j=0; j<strlen(library); j++)
                     {
                         if(cipher[i]==key[j])
                         {
                             cipher[i]=library[j];
-                            break;
+                            strcpy(msg,cipher);
                             
+                            break;
+                           
                         }    
                     }
                 }
-                printf("\nDecripted message: %s\n",cipher);
-                return text;
+                
+            return msg;    
     }
 void RDBF(char arr[],int key)
 {

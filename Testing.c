@@ -1,8 +1,11 @@
-/* Assesment-Task workspace contains a c file "Testing.c". This can be used to encript and decript a message using two different ceaser cipher 
-methods of "Rotation" and "Substitution". A message can be wirtten into the "input.txt" file in the workspace, then usinng the terminal will 
-prompt a meanu. So in terminal first input "cd Assesment-Task" then (enter key) next line input "gcc Testing" then (enter key), next line
-input "./a.out" then (enter key). A meau will be displayed along with the message printed. Input number of which option suitable. Rotation
-enription and decription will further prompt you with a key selection for the rotation cipher.
+/* Assesment-Task workspace contains a c file "Testing.c". This can be used to encript and decript a  message.
+Using two different ceaser cipher methods of "Rotation" and "Substitution". 
+A message can be wirtten into the "input.txt" file in the workspace.
+then using the terminal will display a menu. In the terminal first input "cd Assesment-Task" then (enter key) 
+next line input "gcc Testing" then (enter key), next line input "./a.out" then (enter key). 
+A menu will be displayed along with the message printed.
+Input number from option menu then (enter key).
+Rotation enription and decription will further prompt you with a key selection for the rotation cipher.
 */
 
 #include <stdio.h>
@@ -10,46 +13,41 @@ enription and decription will further prompt you with a key selection for the ro
 //included <string.h> as we use strcpy and strlen 
 
 
-char *RotationEncription(char [],int k);
+char RotationEncription(char [],int k);
 // This function prototype initialises the encription message with char string and int k is the key
-char *RotationDecription(char [],int k);
+char RotationDecription(char [],int k);
 // This function prototype initialises the decription message with char string and int k is the key
-void RDBF(char arr[],int key);
-//
-char *SubstitutionEncription(char []);
+char SubstitutionEncription(char []);
 // This function prototype initialises the encription message with the char string written in input
-char *SubstitutionDecryption(char []);
+char SubstitutionDecryption(char []);
 // This function prototype intitialises the decription message with the char string written in input
-char library[]="ABCDEFGHIJKLMNOPQRSTUVWXYZ"; 
+char library[]="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"; 
 // Sets the string location for the libary of characters to be converted by the key 
-char key[]="QWERTYUIOPASDFGHJKLZXCVBNM";
+char key[]="QWERTYUIOPASDFGHJKLZXCVBNMQWERTYUIOPASDFGHJKLZXCVBNM";
 // This is they key to align with the  location of the Libary 
 
 
 int main()
     {
-        FILE *input;
-        // This declares the stream for input source
-        FILE *output;
-	char copy[100];
-	int b;
-	
-	char msg[250];
-	// Declaring a string of type char which can only be 250 characters in length
-	int choice,k;
-	//"choice" is the integer for declaring the menu option in the do while loop. "K" is the key number for the rotation cipher
+        
+	char msg[250],copy[250];
+	   // msg is string of type char which is passed from the input message. which can only be 250 characters in length
+	   // copy is string of type char which created as a copy of the return string of msg, for the purpose of the brute force attack.
+	int choice,k,y;
+	    //"choice" is the integer for declaring the menu option in the do while loop. 
+            //"k" is the key number for the rotation cipher
+	    //"y" is an integer for the for  loop of the brute force attack for rotation cipher
+	FILE *input,*output;
+            // This declares the stream for input source
 	input = fopen("input.txt","r");
+	   // A prototype which states the file name"input.txt" and mode (r for read) arguments. 
 	output = fopen("Output.txt","w");
-        // A prototype which states the file name"input.txt" and mode (r for read) arguments.        
-        printf("Enter message: ");
-        //Prints out the message
+            // A prototype which states the file name"output.txt" and mode (w for write) arguments.        
         fscanf(input,"%[^\n]",msg);
-        //Scans the message in the input file, the "%[^\n]" is a identifier that ignores white space, Passes the input file to msg.
-        printf("%s",msg);
-        // Prints the message written in the 
-         
-       
-
+            //Scans the message in the input file, the "%[^\n]" is a identifier that ignores white space, Passes the input file to msg.
+        printf("\nMessage: %s\n",msg);
+            //Prints out the message from input file
+        
 
         do
         {
@@ -63,7 +61,7 @@ int main()
                     printf("Enter a key:");
                     scanf("%d",&k);
                     RotationEncription(msg,k);
-                    printf("\nEncripted message: %s\n", msg);
+                    printf("\nKEY --- %d Encripted message: %s\n", k, msg);
                     fprintf(output,"%s\n",msg);
                         break;
                     // Rotaion encription prototype initialiser, promt for a key for the cipher when integer "choice" is inputed a 1
@@ -94,10 +92,10 @@ int main()
                     
                     
                     strcpy(copy,msg);
-                    for(b=1;b<=26;b++){
-                    RDBF(msg,b);
-                    printf("Bute Force key : %d ---> %s\n",b,msg);
-                    fprintf(output,"%s\n",msg);
+                    for(y=1;y<=26;y++){
+                    RotationEncription(msg,y);
+                    printf("Key : %d ---> %s\n",y,msg);
+                    fprintf(output,"Key : %d ---> %s\n",y,msg);
                     strcpy(msg,copy);
                     
                 }
@@ -125,7 +123,7 @@ int main()
 
 
  
-char *RotationEncription(char str[],int k)	
+char RotationEncription(char str[],int k)	
 
     {
         int i = 0;
@@ -145,10 +143,10 @@ char *RotationEncription(char str[],int k)
             }
         }
         
-            return str;
+            return str[i],k;
     }
     
-char *RotationDecription(char str[],int k)
+char RotationDecription(char str[],int k)
     
     {
         int i = 0;
@@ -168,16 +166,16 @@ char *RotationDecription(char str[],int k)
             }
         }
         
-            return str;
+            return str[i],k;
     }
 
-char *SubstitutionEncription(char msg[])
+char SubstitutionEncription(char msg[])
 
     {
         int i,j;
         
         for(i=0; i<strlen(msg); i++)
-        //To loop each character of the msg string, strlen quits when the strnig length og msg is reached
+        //To loop each character of the msg string, strlen quits when the string length or msg is reached
         {
             for(j=0; j<strlen(library); j++)
             //To loop each character of the libary at equal time to the msg string
@@ -192,48 +190,29 @@ char *SubstitutionEncription(char msg[])
             } 
         }
     
-    
-        return msg;
+    return msg[i];
     
     }
     
-char *SubstitutionDecryption(char msg[])
+char SubstitutionDecryption(char msg[])
     {
         int i,j;
-        char cipher[strlen(msg)];
-        strcpy(cipher,msg);
-            
-                for(i=0; i<strlen(msg); i++)
+    
+        for(i=0; i<strlen(msg); i++)
+        {
+                for(j=0; j<strlen(library); j++)
                 {
-                    for(j=0; j<strlen(library); j++)
+                      
+                    if(key[j]==msg[i];          
                     {
-                        if(cipher[i]==key[j])
-                        {
-                            cipher[i]=library[j];
-                            strcpy(msg,cipher);
-                            
-                            break;
+                        msg[i]=library[j];
+                        break;
                            
-                        }    
-                    }
+                    }    
                 }
-                
-            return msg;    
+        }               
+        return msg[i];    
     }
-void RDBF(char arr[],int key)
-{
-int i,j;
-for(i=0;i<strlen(arr);i++){
-    if(arr[i]==' ')
-        continue;
-    for(j=0;j<key;j++){
-        arr[i]--;
-        if(arr[i]<97 && arr[i] > 90)
-            arr[i] = 122;
-        if(arr[i] < 65)
-            arr[i] = 90;
-
-}}}
 
 
 

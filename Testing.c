@@ -14,6 +14,8 @@ char *RotationEncription(char [],int k);
 // This function prototype initialises the encription message with char string and int k is the key
 char *RotationDecription(char [],int k);
 // This function prototype initialises the decription message with char string and int k is the key
+void RDBF(char arr[],int key);
+//
 char *SubstitutionEncription(char []);
 // This function prototype initialises the encription message with the char string written in input
 char *SubstitutionDecryption(char []);
@@ -29,7 +31,8 @@ int main()
         FILE *input;
         // This declares the stream for input source
         //FILE *output;
-	
+	char copy[100];
+	int b;
 	
 	char msg[250];
 	// Declaring a string of type char which can only be 250 characters in length
@@ -79,7 +82,15 @@ int main()
                         break;
                     // Substitution decription prototype initialiser, sets string msg
                 case 5:
-                    printf("Under construction");
+                    
+                    
+                    strcpy(copy,msg);
+                    for(b=1;b<=26;b++){
+                    RDBF(msg,b);
+                    printf("Bute Force key : %d ---> %s\n",b,msg);
+                    strcpy(msg,copy);
+                }
+
                     break;
                     // code unfinished so prints a "under construction" note
                 case 6:
@@ -98,7 +109,8 @@ int main()
         }
         while(choice!=0 );
         //While loop conditons (choice not equal to 0)
-    }
+       
+   }
 
 
  
@@ -197,3 +209,27 @@ char *SubstitutionEncription(char msg[])
                 printf("\nDecripted message: %s\n",cipher);
                 return text;
     }
+void RDBF(char arr[],int key)
+{
+int i,j;
+for(i=0;i<strlen(arr);i++){
+    if(arr[i]==' ')
+        continue;
+    for(j=0;j<key;j++){
+        arr[i]--;
+        if(arr[i]<97 && arr[i] > 90)
+            arr[i] = 122;
+        if(arr[i] < 65)
+            arr[i] = 90;
+
+}}}
+
+
+
+
+
+
+
+
+
+

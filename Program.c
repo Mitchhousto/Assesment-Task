@@ -1,17 +1,17 @@
-/* Assessment-Task workspace contains a c file "Program.c". This can be used to encrypt and decrypt a  message.
-Using two different Caesar cipher methods of "Rotation" and "Substitution". 
-A message can be written into the "input.txt" file in the workspace.
-then using the terminal will display a menu. In the terminal first input "cd Assessment-Task" then (enter key) 
+/* In the "Assessment-Task" workspace it contains a c file "Program.c". This can be used to encrypt and decrypt a message.
+The decryption and encryption is calculated through two different Caesar cipher methods of "Rotation" and "Substitution". 
+A message can be written into the "input.txt" file in the workspace, then using the terminal will display a menu. 
+How to operate code -> In the terminal first input "cd Assessment-Task" then (enter key) 
 next line input "gcc Program.c" then (enter key), next line input "./a.out" then (enter key). 
 A menu will be displayed along with the message printed.
-Input number from option menu then (enter key).
-Rotation encryption and decryption will further prompt you with a key selection for the rotation cipher.
-Results will print to the terminal interface and "Output txt" file when program exited.
+Input a number from option menu then (enter key).
+Rotation encryption and Rotation decryption will further prompt you with a key selection for the rotation cipher.
+Results will print to the terminal interface and "Output txt" file when program is exited.
 
 */
 
 #include <stdio.h>
-#include <string.h>
+
 #include <string.h>
 //included <string.h> as we use strcpy and strlen 
 
@@ -27,7 +27,7 @@ char SubstitutionDecryption(char []);
 char library[]="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"; 
 // Sets the string location for the library of characters to be converted by the key 
 char key[]="QWERTYUIOPASDFGHJKLZXCVBNMQWERTYUIOPASDFGHJKLZXCVBNM";
-// This is they key to align with the  location of the Library 
+// This is they key string to align with the  location of the Library 
 
 
 int main()
@@ -35,17 +35,18 @@ int main()
         
 	char message[250],copy[250];
 	   // msg is string of type char which is passed from the input message. which can only be 250 characters in length
-	   // copy is string of type char which created as a copy of the return string of msg, for the purpose of the brute force attack.
+	   // copy is string of type char which is created as a copy of the return string of msg, for the purpose of the brute force attack.
 	int choice,k,y;
 	    //"choice" is the integer for declaring the menu option in the do while loop. 
             //"k" is the key number for the rotation cipher
-	    //"y" is an integer for the for  loop of the brute force attack for rotation cipher
+	    //"y" is an integer for the "for"  loop of the brute force attack for rotation cipher
 	FILE *input,*output;
-            // This declares the stream for input source
+            // These are a pointer to two streams. "input" a stream where the message being read. "output" a stream for the message to be written. 
 	input = fopen("input.txt","r");
-	   // A prototype which states the file name"input.txt" and mode (r for read) arguments. 
+	   // A prototype which opens the file "fopen"then "input.txt" and mode (r for read) arguments of to which the data is being used and accsessed.6
+	   
 	output = fopen("Output.txt","w");
-            // A prototype which states the file name"output.txt" and mode (w for write) arguments.        
+            // A prototype which states the file name "output.txt" and mode (w for write) arguments.        
         fscanf(input,"%[^\n]",message);
             //Scans the message in the input file, the "%[^\n]" is a identifier that ignores white space, Passes the input file to msg.
         printf("\nMessage: %s\n",message);
@@ -113,7 +114,7 @@ int main()
                     break;
                     // code unfinished so prints a "under construction" note
                 case 6:
-                    printf("Under construction");
+                    printf("UNDER CONSTRUCTION");
                     break;
                     // code unfinished so prints a "under construction" note
                 case 0:
@@ -150,6 +151,7 @@ char RotationEncryption(char str[],int k)
                 // ex = 26 then add the key (FOR EXAMPLE -1) this will create the number 25 then modulas(remiamder) of 26 = 25
                 str[i] = ex + 65;
                 // then 25 +65 = 90 which is ascii number for Z
+                
             }
         }
         

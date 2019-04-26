@@ -142,17 +142,30 @@ char RotationEncryption(char str[],int k)
         for(i=0;str[i] != '\0';i++)
         //For loop including an int i that will indicate the location. '\0' is white space indicator
         {
-            if (str[i] >= 65 && str[i]<= 90) 
+            if (str[i] >= 65 && str[i]<= 122) 
             //if statment concluding if it is bwtewwn letter 'A' and letter 'Z' all in capitals
             {
+                if(str[i] >= 97 && str[i]<= 122){   
+                
+                char ex = str[i]- 65 + 26 -32; 
+                // So for example A is configured to number 26 as it is letter Ascii code 65
+                ex = (ex+k) % 26;
+                // ex = 26 then add the key (FOR EXAMPLE -1) this will create the number 25 then modulas(remiamder) of 26 = 25
+                str[i] = ex + 65;
+                // then 25 +65 = 90 which is ascii number for Z
+                }
+                else{
                 char ex = str[i]- 65 + 26; 
                 // So for example A is configured to number 26 as it is letter Ascii code 65
                 ex = (ex+k) % 26;
                 // ex = 26 then add the key (FOR EXAMPLE -1) this will create the number 25 then modulas(remiamder) of 26 = 25
                 str[i] = ex + 65;
                 // then 25 +65 = 90 which is ascii number for Z
-                
+        }
+
             }
+
+           
         }
         
             return str[i],k;
@@ -166,15 +179,27 @@ char RotationDecryption(char str[],int k)
         for(i=0;str[i] != '\0';i++)
         //For loop including an int i that will indicate the location. '\0' is white space indicator
         {
-            if (str[i] >= 65 && str[i]<= 90) 
+            if (str[i] >= 65 && str[i]<= 122) 
             //if statment concluding if it is bwtewwn letter 'A' and letter 'Z' all in capitals
             {
-                char ex = str[i]- 65 + 26; 
+                if(str[i] >= 97 && str[i]<= 122){
+                 
+                char ex = str[i]- 65 + 26-32; 
                 // So for example A is configured to number 26 as it is letter Ascii code 65
                 ex = (ex-k) % 26;
                 // ex = 26 then add the key (FOR EXAMPLE -1) this will create the number 25 then modulas(remiamder) of 26 = 25
                 str[i] = ex + 65;
                 // then 25 +65 = 90 which is ascii number for Z
+                 }
+
+                else{
+                char ex = str[i]- 65 + 26; 
+                // So for example A is configured to number 26 as it is letter Ascii code 65
+                ex = (ex-k) % 26;
+                // ex = 26 then add the key (FOR EXAMPLE -1) this will create the number 25 then modulas(remiamder) of 26 = 25
+                str[i] = ex + 65;
+                // then 25 +65 = 90 which is ascii number for Z  
+                }
             }
         }
         

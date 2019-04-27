@@ -25,19 +25,19 @@ How to operate code ->
 
 char RotationEncryption(char [],int k);
 // This function prototype initialises the encryption message with char string and int k is the key.
-// The message is generated from the input.txt file and key from interface menu.
+// The message is generated from the input.txt file and key from terminal interface menu.
 // If this function is selected the return value is printed to terminal interface and Output.txt file.
 char RotationDecryption(char [],int k);
 // This function prototype initialises the decryption message with char string and int k is the key.
-// The message is generated from the input.txt file and key from interface menu.
+// The message is generated from the input.txt file and key from terminal interface menu.
 // If this function is selected the return value is printed to terminal interface and Output.txt file.
 char SubstitutionEncryption(char []);
 // This function prototype initialises the encryption message with the char string written in input.
-// The message is generated from the input.txt file and key from interface menu.
+// The message is generated from the input.txt file and key from terminal interface menu.
 // If this function is selected the return value is printed to terminal interface and Output.txt file.
 char SubstitutionDecryption(char []);
 // This function prototype initialises the decryption message with the char string written in input.
-// The message is generated from the input.txt file and key from interface menu.
+// The message is generated from the input.txt file and key from terminal interface menu.
 // If this function is selected the return value is printed to terminal interface and Output.txt file.
 char library[]="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"; 
 //A char string that is for locating a character used in the message, this then gives that a location number in the library for that character.
@@ -48,8 +48,8 @@ char key[]="QWERTYUIOPASDFGHJKLZXCVBNMQWERTYUIOPASDFGHJKLZXCVBNM";
 int main()
     {
         
-	char message[250],copy[strlen(message)];
-	   // "message" is string of type char which is passed from the input message "input.txt" which can only be 250 characters in length
+	char message[1000],copy[1000];
+	   // "message" is string of type char which is passed from the input message "input.txt" which can only be 1000 characters in length
 	   // "copy" is string of type char which is created as a copy of the return string of message, for the purpose of the Rotation cipher attack.
 	int choice,k,y;
 	    //"choice" is the integer for declaring the menu option in the do while loop. 
@@ -123,7 +123,7 @@ int main()
                     for(y=1;y<=26;++y)
                     {
                         RotationDecryption(message,y);
-                        printf("Key : %d ---> %s\n",y,message);
+                        printf("\nKey : %d ---> %s\n",y,message);
                         fprintf(output,"Key : %d ---> %s\n",y,message);
                         strcpy(message,copy);
                         //Implementing a brute force attack on a rotation cipher, first by copying the message to a string called copy.

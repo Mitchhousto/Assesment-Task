@@ -1,12 +1,20 @@
-/* In the "Assessment-Task" workspace it contains a c file "Program.c". This can be used to encrypt and decrypt a message.
+/* 
+About -> 
+In the "Assessment-Task" workspace it contains a c file "Program.c". This can be used to encrypt and decrypt a message.
 The decryption and encryption is calculated through two different Caesar cipher methods of "Rotation" and "Substitution". 
-A message can be written into the "input.txt" file in the workspace, then using the terminal will display a menu. 
-How to operate code -> In the terminal first input "cd Assessment-Task" then (enter key) 
-next line input "gcc Program.c" then (enter key), next line input "./a.out" then (enter key). 
-A menu will be displayed along with the message printed.
-Input a number from option menu then (enter key).
-Rotation encryption and Rotation decryption will further prompt you with a key selection for the rotation cipher.
-Results will print to the terminal interface and "Output txt" file when program is exited.
+A message can be written into the "input.txt" file in the workspace, then using the terminal will display a menu.
+This menu will prompt you to the different cipher options, then when option is selected the message will be exactued. 
+The decrypted or encrypted message will be then printed on the terminal interface and "Output.txt" file.
+ 
+How to operate code -> 
+- Write a message into the "input.txt" file.
+-In the terminal first input "cd Assessment-Task" then (enter key) 
+-Next line input "gcc Program.c" then (enter key),
+-Next line input "./a.out" then (enter key). 
+-A menu will be displayed along with the message printed on terminal interface.
+-Input a number from option menu then (enter key).
+-Rotation encryption and Rotation decryption will further prompt you with a key selection for the rotation cipher.
+-Results will print to the terminal interface and "Output.txt" file when program is exited.
 
 */
 
@@ -154,17 +162,18 @@ char RotationEncryption(char str[],int k)
         int i = 0;
         
         for(i=0;str[i] != '\0';i++)
-        //For loop including an int i that will indicate the location. '\0' is white space indicator
+        //"For" loop including an integer "i" that will indicate character location in string. 
+        //The argument is that at a white space "\0", the "for" loop will quit and move "i++" onto the next character in the string.       
         {
             if (str[i] >= 65 && str[i]<= 122) 
-            //if statement search for letter characters 'A' and letter 'z' using Ascii index.
+            //"if" statement searchs for letter characters 'A' and letter 'z' using Ascii index.
             {
                 if(str[i] >= 97 && str[i]<= 122)
-                //if statement to find all lowercase numbers.
+                //"if" statement to find all lowercase numbers.
                 {                   
                     char ex = str[i]- 65 + 26 -32; 
                     //"-32" in formula is to modify lowercase to Uppercase.
-                    // So "A" being Uppercase it is assigned a number of 26. This is because Ascii code it is assigned number 65, so minus 65 = 0 then + 26(characters in alphabet).
+                    // So "A" being Uppercase it is assigned a number of 26. Its Ascii code is assigned number 65, so minus 65 = 0 then + 26(characters in alphabet).
                     ex = (ex+k) % 26;
                     // Example for character "A". First ex = 26 then add the "key" (inputed in menu for example -1) this will create the number 25 then modulas(remainder) of 26 = "25"
                     str[i] = ex + 65;
@@ -174,12 +183,12 @@ char RotationEncryption(char str[],int k)
                 //All other Uppercase characters are executed.
                 { 
                     char ex = str[i]- 65 + 26; 
-                  // So "A" being Uppercase it is assigned a number of 26. This is because Ascii code it is assigned number 65, so minus 65 = 0 then + 26(characters in alphabet).
+                  // So "A" being Uppercase it is assigned a number of 26. Its Ascii code it is assigned number 65, so minus 65 = 0 then + 26(characters in alphabet).
                     ex = (ex+k) % 26;
                     // Example for character "A". First ex = 26 then add the key (inputed in menu for example -1)) this will create the number 25 then modulas(remiamder) of 26 = "25"
                     str[i] = ex + 65;
                     // then 25 +65 = 90 which is ascii number for Z
-        }
+                }
 
             }
 
@@ -187,6 +196,7 @@ char RotationEncryption(char str[],int k)
         }
         
             return str[i],k;
+            //The return of the function of the new string message and the key to be printed.
     }
     
 char RotationDecryption(char str[],int k)
@@ -195,21 +205,22 @@ char RotationDecryption(char str[],int k)
         int i = 0;
         
         for(i=0;str[i] != '\0';i++)
-        //For loop including an int i that will indicate the location. '\0' is white space indicator
+        //"For" loop including an integer "i" that will indicate character location in string. 
+        //The argument is that at a white space "\0", the "for" loop will quit and move "i++" onto the next character in the string.
         {
             if (str[i] >= 65 && str[i]<= 122) 
-            //if statement search for letter characters 'A' and letter 'z' using Ascii index.
+            //"if" statement search for letter characters 'A' and letter 'z' using Ascii index.
             {
                 if(str[i] >= 97 && str[i]<= 122)
-                //if statement to find all lowercase numbers.
+                //"if" statement to find all lowercase numbers.
                 {
                 char ex = str[i]- 65 + 26-32; 
                 ///"-32" in formula is to modify lowercase to Uppercase.
-                // So "A" being Uppercase it is assigned a number of 26. This is because Ascii code it is assigned number 65, so minus 65 = 0 then + 26(characters in alphabet).
+                // // So for example "Z" is assigned to number "51" as it is Ascii code 90. Then 90 - 65 + 26 = "51"
                 ex = (ex-k) % 26;
-                // ex = 26 then add the key (FOR EXAMPLE -1) this will create the number 25 then modulas(remiamder) of 26 = 25
+                 // ex =  51 then minus the key (FOR EXAMPLE -1) this will create the number 52 then modulas(remiamder) of 26 = 0
                 str[i] = ex + 65;
-                // then 25 +65 = 90 which is ascii number for Z
+                // then 0 + 65 = 65 which is Ascii number for "A"
                  }
 
                 else
@@ -226,6 +237,7 @@ char RotationDecryption(char str[],int k)
         }
         
             return str[i],k;
+             //The return of the function of the new string message and the key to be printed.
     }
 
 char SubstitutionEncryption(char message[])
@@ -234,23 +246,25 @@ char SubstitutionEncryption(char message[])
         int i,j;
         
         for(i=0; i<strlen(message); i++)
-        //To loop each character of the msg string, strlen quits when the string length or msg is reached
+        //"for" loop used to cycle through each character of the message string, loop quits when the string length of "message" is reached.
         {
             for(j=0; j<strlen(library); j++)
-            //To loop each character of the libary at equal time to the msg string
+            //To loop each character of the library at equal time to the message string "for" loop.
             {
                 if(library[j]==message[i])
-                //if statement to find characters in msg   libary e.g A in message to A in libary          
+                //"if" statement that locates same characters in  the "message" string and "library" string. 
+                //This assigns a location number e.g  "A" in message to "A" in library  signed to location 1        
                 {
                     message[i]=key[j];
-                    //This intiiates the same location in the msg to the key
+                    // Character location in the "library" is then passed to the character location of the "key".
+                    // This location assigns a letter in the "key" and  passed to new "message"  string as a encrypted message.
                     break;
                 }
             } 
         }
     
     return message[i];
-    
+     //The return of the function of the new string message to be printed.
     }
     
 char SubstitutionDecryption(char message[])
@@ -258,24 +272,27 @@ char SubstitutionDecryption(char message[])
         int i,j;
     
         for(i=0; i<strlen(message); i++)
-        // "for" loop to allocate a character location of msg
+        //"for" loop used to cycle through each character of the message string, loop quits when the string length of "message" is reached.
         {
                 for(j=0; j<strlen(library); j++)
-                // "for" loop to allocate a location in the key equal to the msg
+                //To loop each character of the library at equal time to the message string "for" loop.
                 {
                       
                     if(key[j]==message[i]) 
-                    // This "if" statement executes when a character in the message is  the same location as the key       
+                    // This "if" statement executes when a character in the "message" string is  the same location as the "key" string.
+                    // The encryted "message" string has a "Q" this is then allocated a character position 1 in the "Key" string
                     {
                         message[i]=library[j];
                         // Character location in the key is then passed to the character location of the Libary.
-                        // This location assigns a letter in the libary and  passed to msg as a decripted message.
+                        // This character location assigns a character in the "library" and  passed to new "message" string as a decrypted message.
+                        // The character location of "Q"= 1, the same character location in Library is "A".
                         break;
                            
                     }    
                 }
         }               
-        return message[i];    
+        return message[i];
+        //The return of the function of the new string message to be printed.
     }
 
 
